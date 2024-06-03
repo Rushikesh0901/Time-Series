@@ -1,0 +1,37 @@
+---
+title: "Auto regressive"
+author: "Rushikesh"
+date: "2024-02-25"
+output: word_document
+---
+
+```{r echo=TRUE}
+#y = 0.5y(t-1)+e(1)
+y=rnorm(250,0,2)
+y1 = numeric(250)
+y1[1]=y[1]
+for (i in 2:250) {y1[i] = 0.5*y1[i-1]+y[i]}
+plot.ts(y1)
+acf(y1)
+
+#y=0.7y(t-1)+e(t)
+y=rnorm(250,0,2)
+y1 = numeric(250)
+y1[1]=y[1]
+for (i in 2:250) {y1[i] = 0.7*y1[i-1]+y[i]}
+plot.ts(y1)
+acf(y1)
+
+#y=0.7y(t-1)+0.3y(t-2)+e(t)
+y=rnorm(250,0,2)
+y1[1]=y[1]
+y1[2]=y[2]
+for (i in 3:250) {y1[i] = 0.7*y1[i-1]+0.3*y1[i-2]+y[i]}
+plot.ts(y1)
+acf(y1)
+
+
+
+
+
+```

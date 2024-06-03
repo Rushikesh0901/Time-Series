@@ -1,0 +1,33 @@
+---
+title: "Moving Average Time Series"
+author: "Rushikesh"
+date: "2024-02-25"
+output: word_document
+---
+
+```{r echo=TRUE}
+library(forecast)
+opar = par(no.readonly = TRUE)
+par(mfrow = c(2,2))
+ylim = c(min(Nile),max(Nile))
+
+plot(Nile,main = "row timeseries")
+
+plot(ma(Nile,3),main = "Simple moving avg(k=3)",ylim=ylim)
+
+plot(ma(Nile,7),main = "Simple moving avg(k=7)",ylim=ylim)
+
+plot(ma(Nile,15),main = "Simple moving avg(k=15)",ylim=ylim)
+
+par(opar)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

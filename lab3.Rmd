@@ -1,0 +1,51 @@
+---
+title: "Exponential smoodhing"
+author: "Rushikesh"
+date: "2024-02-25"
+output: word_document
+---
+
+```{r echo=TRUE}
+library(forecast)
+y = c(71,70,69,68,64,65,72,78,75,75,75,70)
+yt = ts(y,start = c(1,1),frequency = 1)
+
+fit1 = ets(yt,model = "ANN",alpha = 0.1)
+A1 = fit1$fitted;A1
+
+fit2 = ets(yt,model = "ANN",alpha = 0.3)
+A2 = fit2$fitted;A2
+
+fit3 = ets(yt,model = "ANN",alpha = 0.5)
+A3 = fit3$fitted;A3
+
+fit4 = ets(yt,model = "ANN",alpha = 0.7)
+A4 = fit1$fitted;A4
+
+fit5 = ets(yt,model = "ANN",alpha = 0.9)
+A5 = fit1$fitted;A5
+
+plot(yt,col="blue")
+lines(A1,lty=1)
+lines(A2,lty=2)
+lines(A3,lty=3)
+lines(A4,lty=4)
+lines(A5,lty=5)
+
+legend("topleft",c("Row Data","alpha = 0.1","alpha=0.3","alpha=0.5","alpha=0.7","alpha=0.9",
+       lty=c(1,2,3,4,5),col = c("red","pink","blue","orange","yellow","lightblue")))
+
+#double exp smoodhing
+s = c(7,6,5,4,8,9,10,11,10,7)
+S1 = ts(s,start = c(1,1),frequency = 1);S1
+fit = ets(S1,model = "AAN");fit
+pred = forecast(fit4);pred
+plot(fit)
+
+#triple exp smoodhing
+Fit = ets(AirPassengers,model = "AAA")
+Fit
+Pred = forecast(Fit,5);Pred
+plot(Fit)
+
+```
